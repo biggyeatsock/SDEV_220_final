@@ -1,5 +1,5 @@
-Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley (4890)
-Pride and Prejudice by Jane Austen (2992)
-Moby Dick; Or, The Whale by Herman Melville (2577)
-Romeo and Juliet by William Shakespeare (2472)
-Middlemarch by George Eliot (1844)
+Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley 
+Pride and Prejudice by Jane Austen 
+Moby Dick; Or, The Whale by Herman Melville 
+Romeo and Juliet by William Shakespeare 
+Middlemarch by George Eliot 
