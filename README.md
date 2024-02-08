@@ -1,2 +1,4 @@
 # SDEV_220_final
-SDEV 220 final project
+Group 2's project is going to be a library book management tool
+
+The Projects name is BookWise Book manager
