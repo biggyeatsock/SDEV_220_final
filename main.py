@@ -28,11 +28,15 @@ def main(): # Main function that runs the program.
         print("2. Read from the database")
         print("3. Close the program.")
         uinput = input("> ")
-        if uinput == "1":
-            pass
-        elif uinput == "2":
-            my_model = Model()
-            my_view = view(my_model)
+        my_model = Model()
+        my_view = view(my_model)
+        if uinput == "1": # Add books into the database
+            addbook = input("\nWhat is the name of the book? \n> ")
+            addauthor = input("\nWhat is the name of the author? \n> ")
+            addgenre = input("\nWhat is the genre of the book? \n> ")
+            addyear = input("\nWhat is the year of publication? \n> ")
+            my_model.add_data(addbook, addauthor, addgenre, addyear) # Sends the data over into the class file.
+        elif uinput == "2":    
             my_view.show_data()
             print("\n")
         elif uinput == "3":
