@@ -9,32 +9,12 @@
 #
 #####################
 
-
-def redata(): # Read the data from the file
-    data =  open('data.txt', 'r') 
-    for line in data:
-        print(f'\n{line}')
-    return data
+from classes.coolstuff import view, Model
 
 
-def write_info(data): # writes the info to the file.
-    data = open('data.txt', 'a') # opens the file for appending.
-    wcheck = input("Would you like to write to the file? (y/n) \n > ")
-    if wcheck == "y":
-        uinput = input("What would you like to write to the file? \n > ")
-        try:
-            if len(uinput) != 0: # Checks if the user wrote anything.
-                print(f"\nWriting to the file...\n")
-                data.write('\n'+uinput) # Writes the user input to the file.
-            else: # Prints the error
-                raise ValueError("You didn't write anything, so no changes made.")
-        except ValueError as e:
-            print(e)
-    else:
-        print("\nOkay, no changes made.\n")
 
 def userclose():
-    uinput = input("Would you like to close the program? (y/n) \n > ")
+    uinput = input("\nWould you like to close the program? (y/n) \n> ")
     if uinput == "y":
         print("Closing the program...")
         exit()
@@ -42,10 +22,23 @@ def userclose():
 
 def main(): # Main function that runs the program.
     print("Welcome to the BookWise Book Manager")
-    while True: # Loops the Program.
-        data = redata() # reads the data from the file
-        write_info(data)
-        userclose()
+    while True:
+        print("What would you like to do?")
+        print("1. Write to the database")
+        print("2. Read from the database")
+        print("3. Close the program.")
+        uinput = input("> ")
+        if uinput == "1":
+            pass
+        elif uinput == "2":
+            my_model = Model()
+            my_view = view(my_model)
+            my_view.show_data()
+            print("\n")
+        elif uinput == "3":
+            userclose()
+        else:
+            print("Invalid input, try again.")
 
 
 
