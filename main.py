@@ -29,9 +29,13 @@ def database_info():
 
 def create_database(file_path):
     try:
-        os.system(f'python {file_path}')
+        if not isfile(file_path):
+            raise FileNotFoundError
+        elif isfile(file_path):
+            os.system(f'python {file_path}')
     except FileNotFoundError:
         print(f'Error: the file {file_path} does not exist.')
+        exit()
 
 def userclose():
     uinput = input("\nWould you like to close the program? (y/n) \n> ")
