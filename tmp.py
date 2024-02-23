@@ -1,12 +1,15 @@
-class View:
-    def __init__(self, model):
-        self.model = model
+# This just a test file.
+# This tests to see if a database file has been created, and if it is, it prints the size of the file.
 
-    def show_data(self):
-        print(self.model.data)
-        return self.model.data
+import sqlite3
+from os.path import isfile, getsize
+# conn = sqlite3.connect('database.db')
+try: 
+    if not isfile('database.db'):
+        raise sqlite3.OperationalError
+    
+    if isfile('database.db'):
+        print(f'\nDatabase file size: {getsize("books.db")} bytes')
 
-class Model:
-    def __init__(self):
-        self.data = [1, 2, 3, 4, 5]  # Sample data
-
+except sqlite3.OperationalError as e:
+    print(f'File Not found')

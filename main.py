@@ -10,8 +10,28 @@
 #####################
 
 from classes.coolstuff import view, Model
+import os
+from os.path import isfile, getsize
+file_path = 'database.py'
 
+def database_info():
+    import sqlite3
+    try:
+        if not isfile('books.db'): # if the database is not found, it will create a new one. 
+            raise sqlite3.OperationalError
 
+        if isfile('books.db'):
+            print(f'\nDatabase file size: {getsize("books.db")} bytes')
+    except sqlite3.OperationalError as e:
+        print(f'File Not Found')
+        print('Creating a database.....')
+        create_database(file_path)
+
+def create_database(file_path):
+    try:
+        os.system(f'python {file_path}')
+    except FileNotFoundError:
+        print(f'Error: the file {file_path} does not exist.')
 
 def userclose():
     uinput = input("\nWould you like to close the program? (y/n) \n> ")
@@ -21,7 +41,8 @@ def userclose():
 
 
 def main(): # Main function that runs the program.
-    print("Welcome to the BookWise Book Manager")
+    database_info() # Prints if the database creation file has been ran.
+    print("\nWelcome to the BookWise Book Manager\n")
     while True:
         print("What would you like to do?")
         print("1. Write to the database")
