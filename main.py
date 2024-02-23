@@ -14,20 +14,19 @@ import os
 from os.path import isfile, getsize
 file_path = 'database.py'
 
-def database_info():
+def database_info(): # gathers info about the database.
     import sqlite3
     try:
         if not isfile('books.db'): # if the database is not found, it will create a new one. 
             raise sqlite3.OperationalError
-
-        if isfile('books.db'):
+        if isfile('books.db'): # if a database is present it gives you the size
             print(f'\nDatabase file size: {getsize("books.db")} bytes')
     except sqlite3.OperationalError as e:
         print(f'File Not Found')
         print('Creating a database.....')
         create_database(file_path)
 
-def create_database(file_path):
+def create_database(file_path): # Create a database if one hasn't been made
     try:
         if not isfile(file_path):
             raise FileNotFoundError
@@ -37,12 +36,11 @@ def create_database(file_path):
         print(f'Error: the file {file_path} does not exist.')
         exit()
 
-def userclose():
+def userclose(): # Closes on user command.
     uinput = input("\nWould you like to close the program? (y/n) \n> ")
     if uinput == "y":
         print("Closing the program...")
         exit()
-
 
 def main(): # Main function that runs the program.
     database_info() # Prints if the database creation file has been ran.
