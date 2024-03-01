@@ -1,9 +1,3 @@
-<!-- # SDEV_220_final
-Group 2's project is going to be a library book management tool
-
-The Projects name is BookWise Book manager -->
-
-
 
 
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
@@ -115,10 +109,8 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+* Pyton
+[![Python][Python.py]][Python-url]
 
 ### Installation
 
@@ -210,11 +202,12 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+https://img.shields.io/github/contributors/biggyeatsock/SDEV_220_final_Project_Team2.svg?style=for-the-badge
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/biggyeatsock/SDEV_220_final_Project_Team2.svg?style=for-the-badge 
+<!-- https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge -->
 [contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
 [forks-url]: https://github.com/github_username/repo_name/network/members
