@@ -32,7 +32,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://github.com/biggyeatsock/DEV_220_final_Project_Team2">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -41,7 +41,7 @@
   <p align="center">
     A library database/management software
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/biggyeatsock/DEV_220_final_Project_Team2"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     ·
@@ -86,7 +86,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+<!-- Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description` -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -95,8 +95,6 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 ### Built With
 
 [![Python][Python.py]][Python-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -110,7 +108,8 @@ To get a local copy up and running follow these simple example steps.
 
 What you need to run this:
 
-Python [![Python][Python.py]][Python-url]
+
+[![Python][Python.py]][Python-url]
 
 ### Installation
 
@@ -132,7 +131,7 @@ Python [![Python][Python.py]][Python-url]
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+This application is for managing books digitally, for a library or for personal use.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
@@ -148,7 +147,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Feature 3
     - [ ] Nested Feature
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/biggyeatsock/SDEV_220_final_Project_Team2/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -181,14 +180,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 
-<!-- CONTACT -->
-## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
-Project Link: [https://github.com/biggyeatsock/SDEV_220_final_Project_Team2](https://github.com/biggyeatsock/SDEV_220_final_Project_Team2/)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -214,7 +207,7 @@ Project Link: [https://github.com/biggyeatsock/SDEV_220_final_Project_Team2](htt
 [issues-shield]: https://img.shields.io/github/issues/biggyeatsock/SDEV_220_final_Project_Team2.svg?style=for-the-badge
 [issues-url]: https://github.com/biggyeatsock/SDEV_220_final_Project_Team2/issues
 [license-shield]: https://img.shields.io/github/license/biggyeatsock/SDEV_220_final_Project_Team2.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[license-url]: https://github.com/biggyeatsock/SDEV_220_final_Project_Team2/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/screenshot.png
