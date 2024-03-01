@@ -45,9 +45,9 @@
     <br />
     <br />
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/biggyeatsock/SDEV_220_final_Project_Team2/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/biggyeatsock/SDEV_220_final_Project_Team2/issues">Request Feature</a>
   </p>
 </div>
 
@@ -114,16 +114,15 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/biggyeatsock/SDEV_220_final_Project_Team2.git
    ```
-3. Run the main.py file
+2. Run the main.py file
    ```sh
    python main.py or python3 main.py
    ```
-4. Enjoy
+3. Enjoy
    
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
