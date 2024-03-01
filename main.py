@@ -48,8 +48,9 @@ def main(): # Main function that runs the program.
     while True:
         print("What would you like to do?")
         print("1. Write to the database")
-        print("2. Read from the database")
-        print("3. Close the program.")
+        print("2. Removes books from database")
+        print("3. Shows all the books")
+        print("4. Close the program.")
         uinput = input("> ")
         my_model = Model()
         my_view = view(my_model)
@@ -59,10 +60,14 @@ def main(): # Main function that runs the program.
             addgenre = input("\nWhat is the genre of the book? \n> ")
             addyear = input("\nWhat is the year of publication? \n> ")
             my_model.add_data(addbook, addauthor, addgenre, addyear) # Sends the data over into the class file.
-        elif uinput == "2":    
+        elif uinput == "2": # Removes books from database
+            bookid = input("\nWhat is the ID of the book? \n> ")
+            my_model.remove_data(bookid) # Sends the data over into the class file.
+            print("Removal successful!!")
+        elif uinput == "3": # Prints all the books in the database  
             my_view.show_data()
             print("\n")
-        elif uinput == "3":
+        elif uinput == "4":
             userclose()
         else:
             print("Invalid input, try again.")
