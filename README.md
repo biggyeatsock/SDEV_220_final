@@ -30,8 +30,8 @@ The Projects name is BookWise Book manager -->
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+
+
 
 
 
@@ -50,7 +50,6 @@ The Projects name is BookWise Book manager -->
     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
     ·
     <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
     ·
@@ -100,7 +99,8 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 
 ### Built With
-* [![Python][Python.py]][Python-url]
+
+[![Python][Python.py]][Python-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -127,14 +127,12 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    git clone https://github.com/github_username/repo_name.git
    ```
-3. Install NPM packages
+3. Run the main.py file
    ```sh
-   npm install
+   python main.py or python3 main.py
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+4. Enjoy
+   
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
