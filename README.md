@@ -24,6 +24,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
+[![MIT LICENSE][license-shield]][license-url]
 
 
 
