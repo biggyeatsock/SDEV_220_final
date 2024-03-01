@@ -184,9 +184,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+My team has been wonderful to work with and to grow with. I know personally I wouldn't have been able to do this all on my own.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
