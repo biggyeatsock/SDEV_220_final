@@ -33,16 +33,14 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/biggyeatsock/DEV_220_final_Project_Team2">
+  <a href="https://github.com/biggyeatsock/DEV_220_final_Project_Team2/">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">BookWise Book Manager</h3>
 
   <p align="center">
-    A library database/management software
-    <br />
-    <a href="https://github.com/biggyeatsock/DEV_220_final_Project_Team2"><strong>Explore the docs »</strong></a>
+    A library database / management software
     <br />
     <br />
     ·
@@ -87,7 +85,8 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-<!-- Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description` -->
+BookWise is a comprehensive library software designed to streamline the management of books and resources in libraries of all sizes. The software simplifies tasks such as adding new books to the collection, removing books that are no longer in circulation, and allowing patrons to borrow and return books seamlessly.  Whether you're a librarian, educator, or book enthusiast, BookWise is the ultimate tool to organize and manage your library collection efficiently.
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -101,9 +100,6 @@
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
@@ -143,10 +139,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] Getting borrowing integrated
+- [ ] GUI
+
 
 See the [open issues](https://github.com/biggyeatsock/SDEV_220_final_Project_Team2/issues) for a full list of proposed features (and known issues).
 
