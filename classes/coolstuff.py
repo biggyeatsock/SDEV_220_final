@@ -16,6 +16,16 @@ class Model:
         self.cursor.execute('DELETE FROM books WHERE id=?', (id,)) # Takes the given ID and uses it to remove said book from databse.
         self.conn.commit()
 
+    def get_rows(self):
+        self.cursor.execute('SELECT * FROM books')
+        results = self.cursor.fetchall()
+        return len(results)
+    
+    def get_row(self, id):
+        self.cursor.execute('SELECT title FROM books')
+        results = self.cursor.fetchall()
+        return results[id]
+
 class view:
     def __init__(self, model):
         self.model = model
