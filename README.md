@@ -108,9 +108,9 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* Pyton
-[![Python][Python.py]][Python-url]
+What you need to run this:
+
+Python [![Python][Python.py]][Python-url]
 
 ### Installation
 
@@ -186,7 +186,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/biggyeatsock/SDEV_220_final_Project_Team2](https://github.com/biggyeatsock/SDEV_220_final_Project_Team2/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -205,15 +205,15 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/biggyeatsock/SDEV_220_final_Project_Team2.svg?style=for-the-badge
 [contributors-url]: https://github.com/biggyeatsock/SDEV_220_final_Project_Team2/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/biggyeatsock/SDEV_220_final_Project_Team2.svg?style=for-the-badge
 [forks-url]: https://github.com/biggyeatsock/SDEV_220_final_Project_Team2/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/biggyeatsock/SDEV_220_final_Project_Team2.svg?style=for-the-badge
 [stars-url]: https://github.com/biggyeatsock/SDEV_220_final_Project_Team2/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/biggyeatsock/SDEV_220_final_Project_Team2.svg?style=for-the-badge
 [issues-url]: https://github.com/biggyeatsock/SDEV_220_final_Project_Team2/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/biggyeatsock/SDEV_220_final_Project_Team2.svg?style=for-the-badge
 [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
