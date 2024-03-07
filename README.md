@@ -33,9 +33,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/biggyeatsock/DEV_220_final_Project_Team2/">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+  <a href="https://github.com/biggyeatsock/DEV_220_final_Project_Team2/"></a>
 
 <h3 align="center">BookWise Book Manager</h3>
 
@@ -83,7 +81,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 BookWise is a comprehensive library software designed to streamline the management of books and resources in libraries of all sizes. The software simplifies tasks such as adding new books to the collection, removing books that are no longer in circulation, and allowing patrons to borrow and return books seamlessly.  Whether you're a librarian, educator, or book enthusiast, BookWise is the ultimate tool to organize and manage your library collection efficiently.
 
