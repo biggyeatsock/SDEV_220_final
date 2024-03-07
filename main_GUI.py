@@ -70,87 +70,158 @@ class BookWindow:
     def __init__(self, root, num_books):
         self.root = root
         self.root.title("Book List")
-
-        self.canvas = tk.Canvas(root, width=400, height=300, bg='white')
-        self.canvas.pack(expand=tk.YES, fill=tk.BOTH)
+        root.resizable(False, False)
+        window_height = 160
+        window_width = 600
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+        x_cordinate = int((screen_width/2) - (window_width/2))
+        y_cordinate = int((screen_height/2) - (window_height/2))
+        root.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
 
         my_model = Model()
         my_view = view(my_model)
         self.num_books = num_books
-        self.rectangles_data = [{'text': my_model.get_row(i), 'color': 'red'} for i in range(self.num_books)]
 
-        self.draw_centered_rectangles()
+        scrollbar = tk.Scrollbar(root)
+        scrollbar.pack( side = 'right', fill='y' )
 
-    def draw_centered_rectangles(self):
-        num_columns = 3  # Number of columns in each row
-        rect_width = 100
-        rect_height = 50
-
-        for index, data in enumerate(self.rectangles_data):
-            # Calculate the row and column numbers
-            row = index // num_columns
-            col = index % num_columns
-
-            # Calculate the coordinates for the centered rectangle
-            x1 = (self.canvas.winfo_reqwidth() - rect_width * num_columns) // 2 + col * rect_width
-            y1 = (self.canvas.winfo_reqheight() - rect_height * (num_columns + 1)) // 2 + row * rect_height
-            x2 = x1 + rect_width
-            y2 = y1 + rect_height
-
-            # Draw the rectangle
-            self.canvas.create_rectangle(x1, y1, x2, y2, fill=data['color'], outline='black')
-
-            # Calculate the text coordinates for centering
-            text_x = (x1 + x2) / 2
-            text_y = (y1 + y2) / 2
-
-            # Draw the text
-            self.canvas.create_text(text_x, text_y, text=data['text'], fill='white', font=('Helvetica', 6, 'bold'))
+        mylist = tk.Listbox(root, yscrollcommand = scrollbar.set )
+        for i in range(self.num_books):
+            ##mylist.insert('end', "This is line number " + str(line))
+            book_id = str(my_model.get_row(i, 'id')).replace('(','').replace(')','').replace(',','')
+            book_title = str(my_model.get_row(i, 'title')).replace('(','').replace(')','').replace(',','')
+            book_author = str(my_model.get_row(i, 'author')).replace('(','').replace(')','').replace(',','')
+            book_genre = str(my_model.get_row(i, 'genre')).replace('(','').replace(')','').replace(',','')
+            book_year = str(my_model.get_row(i, 'publication_year')).replace('(','').replace(')','').replace(',','')
+            mylist.insert('end', (str(i+1)+'.          ID: '+book_id+',     Title: '+book_title+',     Author: '+book_author+',     Genre: '+book_genre+',     Year: '+book_year))
+        
+        mylist.pack( fill = 'both' )
+        scrollbar.config( command = mylist.yview )
 
 class AddWindow:
     def __init__(self, root):
         self.root = root
         self.root.title("Add books")
+        root.resizable(False, False)
+        window_height = 325
+        window_width = 300
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+        x_cordinate = int((screen_width/2) - (window_width/2))
+        y_cordinate = int((screen_height/2) - (window_height/2))
+        root.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
 
-        self.text_widget = tk.Text(root, height=1, width=10)
-        self.text_widget.pack(pady=10)
-        self.text_widget.insert(tk.END, "Book name:")
-        self.text_widget = tk.Text(root, height=1, width=10)
-        self.text_widget.pack(pady=10)
-        self.text_widget.insert(tk.END, "Book author:")
-        self.text_widget = tk.Text(root, height=1, width=10)
-        self.text_widget.pack(pady=10)
-        self.text_widget.insert(tk.END, "Book genre:")
-        self.text_widget = tk.Text(root, height=1, width=10)
-        self.text_widget.pack(pady=10)
-        self.text_widget.insert(tk.END, "Book year:")
-        add_button = tk.Button(root, text="Add book", command=self.open_books_window) #add books command
+        book_label = tk.Label(root, text='Book name:')
+        book_label.pack()
+        self.book_entry = tk.Entry(root)
+        self.book_entry.pack(pady=10)
+        author_label = tk.Label(root, text='Book author:')
+        author_label.pack()
+        self.author_entry = tk.Entry(root)
+        self.author_entry.pack(pady=10)
+        genre_label = tk.Label(root, text='Book genre:')
+        genre_label.pack()
+        self.genre_entry = tk.Entry(root)
+        self.genre_entry.pack(pady=10)
+        year_label = tk.Label(root, text='Year published:')
+        year_label.pack()
+        self.year_entry = tk.Entry(root)
+        self.year_entry.pack(pady=10)
+        add_button = tk.Button(root, text="Add book", command=self.add_books)
         add_button.pack(pady=10)
-        
+        self.result_label = tk.Label(self.root, text="")
+        self.result_label.pack()
+
+    def add_books(self):
+        my_model = Model()
+        my_view = view(my_model)
+        addbook = self.book_entry.get()
+        addauthor = self.author_entry.get()
+        addgenre = self.genre_entry.get()
+        addyear = self.year_entry.get()
+        if(addbook != "" and addauthor != "" and addgenre != "" and addyear != ""):
+            my_model.add_data(addbook, addauthor, addgenre, addyear)
+            self.book_entry.delete(0, 'end')
+            self.author_entry.delete(0, 'end')
+            self.genre_entry.delete(0, 'end')
+            self.year_entry.delete(0, 'end')
+            result_message = 'Successfully added book "' + addbook +'".'
+            self.result_label.config(text=result_message)
+        else:
+            result_message = 'Book not added: One or more fields left empty.'
+            self.result_label.config(text=result_message)
+
+class RemoveWindow:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Remove books")
+        root.resizable(False, False)
+        window_height = 150
+        window_width = 300
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+        x_cordinate = int((screen_width/2) - (window_width/2))
+        y_cordinate = int((screen_height/2) - (window_height/2))
+        root.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
+
+        id_label = tk.Label(root, text='Book ID:')
+        id_label.pack()
+        self.id_entry = tk.Entry(root)
+        self.id_entry.pack(pady=10)
+
+        remove_button = tk.Button(root, text="Remove book", command=self.remove_books)
+        remove_button.pack(pady=10)
+        self.result_label = tk.Label(self.root, text="")
+        self.result_label.pack()
+
+    def remove_books(self):
+        my_model = Model()
+        my_view = view(my_model)
+        removebook = str(self.id_entry.get())
+        if(removebook != ""):
+            try:
+                removedtitle = str(my_model.get_row_id(removebook, 'title')).replace('(','').replace(')','').replace(',','')
+                my_model.remove_data(removebook)
+                self.id_entry.delete(0, 'end')
+                result_message = 'Successfully removed book ' + removedtitle +'.'
+                self.result_label.config(text=result_message)
+            except IndexError:
+                result_message = 'Book not removed: Book with ID of "'+removebook+'" does not exist.'
+                self.result_label.config(text=result_message)
+        else:
+            result_message = 'Book not removed: Field cannot be empty.'
+            self.result_label.config(text=result_message)
 
 class MainWindow:
     def __init__(self, root):
         self.root = root
         self.root.title("Main")
+        root.resizable(False, False)
+        window_height = 150
+        window_width = 500
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+        x_cordinate = int((screen_width/2) - (window_width/2))
+        y_cordinate = int((screen_height/2) - (window_height/2))
+        root.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
+        
 
 
-
-        self.text_widget = tk.Text(root, height=1, width=26)
-        self.text_widget.pack(pady=10)
-        self.text_widget.insert(tk.END, "What would you like to do?")
+        book_label = tk.Label(root, text='What would you like to do?')
+        book_label.pack(pady=10)
 
         # Create a button to open the write window
         open_write_button = tk.Button(root, text="Add books", command=self.open_add_window)
         open_write_button.pack(pady=0)
         # Create a button to open the remove window
-        open_remove_button = tk.Button(root, text="Remove books", command=self.open_books_window) #open remove window
+        open_remove_button = tk.Button(root, text="Remove books", command=self.open_remove_window)
         open_remove_button.pack(pady=0)
         # Create a button to open the books window
         open_books_button = tk.Button(root, text="Show all books", command=self.open_books_window)
         open_books_button.pack(pady=0)
 
     def open_books_window(self):
-        database_info()
         my_model = Model()
         my_view = view(my_model)
         rows_books = my_model.get_rows()
@@ -158,12 +229,16 @@ class MainWindow:
         app_books = BookWindow(books_window, num_books=rows_books)
 
     def open_add_window(self):
-        database_info()
         add_window = tk.Toplevel(self.root)
         app_add = AddWindow(add_window)
 
+    def open_remove_window(self):
+        remove_window = tk.Toplevel(self.root)
+        app_add = RemoveWindow(remove_window)
+
 
 if __name__ == "__main__":
+    database_info()
     root = tk.Tk()
     app_main = MainWindow(root)
     root.mainloop()

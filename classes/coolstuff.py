@@ -21,10 +21,17 @@ class Model:
         results = self.cursor.fetchall()
         return len(results)
     
-    def get_row(self, id):
-        self.cursor.execute('SELECT title FROM books')
+    def get_row(self, num, info):
+        command = 'SELECT '+info+' FROM books'
+        self.cursor.execute(command)
         results = self.cursor.fetchall()
-        return results[id]
+        return results[num]
+    
+    def get_row_id(self, id, info):
+        command = 'SELECT '+info+' FROM books WHERE id='+id
+        self.cursor.execute(command)
+        results = self.cursor.fetchall()
+        return results[0]
 
 class view:
     def __init__(self, model):
