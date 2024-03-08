@@ -193,6 +193,42 @@ class RemoveWindow:
             result_message = 'Book not removed: Field cannot be empty.'
             self.result_label.config(text=result_message)
 
+class BorrowWindow:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Borrow a Book")
+        root.resizable(False, False)
+        window_height = 150
+        window_width = 500
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+        x_cordinate = int((screen_width/2) - (window_width/2))
+        y_cordinate = int((screen_height/2) - (window_height/2))
+        root.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
+        
+        book_label = tk.Label(root, text='Enter patron name and book title')
+        book_label.pack(pady=10)
+
+        self.patron_entry = tk.Entry(root)
+        self.patron_entry.pack(pady=5)
+
+        self.book_entry = tk.Entry(root)
+        self.book_entry.pack(pady=5)
+
+        borrow_button = tk.Button(root, text="Borrow", command=self.borrow_book)
+        borrow_button.pack(pady=10)
+
+    def borrow_book(self):
+        patron_name = self.patron_entry.get()
+        book_title = self.book_entry.get()
+
+        # Call the library function to borrow the book
+        library = Library('books.db')
+        library.borrow_book(patron_name, book_title)
+
+        self.patron_entry.delete(0, 'end')
+        self.book_entry.delete(0, 'end')
+
 class MainWindow:
     def __init__(self, root):
         self.root = root
@@ -206,8 +242,6 @@ class MainWindow:
         y_cordinate = int((screen_height/2) - (window_height/2))
         root.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
         
-
-
         book_label = tk.Label(root, text='What would you like to do?')
         book_label.pack(pady=10)
 
@@ -220,6 +254,9 @@ class MainWindow:
         # Create a button to open the books window
         open_books_button = tk.Button(root, text="Show all books", command=self.open_books_window)
         open_books_button.pack(pady=0)
+        # Create a button to open the borrow window
+        open_borrow_button = tk.Button(root, text="Borrow a book", command=self.open_borrow_window)
+        open_borrow_button.pack(pady=0)
 
     def open_books_window(self):
         my_model = Model()
@@ -235,6 +272,10 @@ class MainWindow:
     def open_remove_window(self):
         remove_window = tk.Toplevel(self.root)
         app_add = RemoveWindow(remove_window)
+
+    def open_borrow_window(self):
+        borrow_window = tk.Toplevel(self.root)
+        app_borrow = BorrowWindow(borrow_window)
 
 
 if __name__ == "__main__":
