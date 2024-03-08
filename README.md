@@ -115,6 +115,10 @@ What you need to run this:
    ```sh
    python main.py or python3 main.py
    ```
+   or if you want want a GUI
+   ```sh
+   python main_gui.py or python3 main_gui.py
+   ```
 3. Enjoy
    
 
@@ -137,8 +141,6 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 ## Roadmap
 
 - [ ] Getting borrowing integrated
-- [ ] GUI
-
 
 See the [open issues](https://github.com/biggyeatsock/SDEV_220_final_Project_Team2/issues) for a full list of proposed features (and known issues).
 
@@ -153,13 +155,6 @@ Contributions are what make the open source community such an amazing place to l
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -181,8 +176,12 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-<!-- My team has been wonderful to work with and to grow with. I know personally I wouldn't have been able to do this all on my own. -->
+Shout out to 
+- Kathy Perez 
+- Franklin Ramirez 
+- Jack Routsong 
 
+They made everything work wonderfully and have been absolutely wonderful to work with.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
