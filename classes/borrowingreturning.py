@@ -28,7 +28,14 @@ class DatabaseManager:
         conn.close()
         return data
 
-# Define Library class
+    def remove_book(self, book_title):
+        # Remove a book from the database
+        pass
+
+    def add_book(self, book):
+        # Add a book to the database
+        pass
+
 class Library:
     def __init__(self, db_manager):
         self.db_manager = db_manager
@@ -48,7 +55,7 @@ class Library:
             if books:
                 print("Search results:")
                 for book in books:
-                    print(Book(*book))
+                    print(book)
             else:
                 print("No books found matching the search criteria.")
         except sqlite3.Error as e:
@@ -67,7 +74,7 @@ class Library:
             conn.close()
 
             if book:
-                borrowed_book = Book(*book)
+                borrowed_book = book
                 patron.borrow_book(borrowed_book)
                 self.db_manager.remove_book(book_title)
             else:
@@ -78,7 +85,6 @@ class Library:
     def return_book(self, patron, book_title):
         """Allow a patron to return a book."""
         try:
-            returned_book = None
             conn = self.db_manager.create_connection()
             cursor = conn.cursor()
             cursor.execute('''
@@ -89,7 +95,7 @@ class Library:
             conn.close()
 
             if book:
-                returned_book = Book(*book)
+                returned_book = book
                 patron.return_book(returned_book)
                 self.db_manager.add_book(returned_book)
             else:
@@ -97,7 +103,7 @@ class Library:
         except sqlite3.Error as e:
             print("Error returning book:", e)
 
-# Books.db file
-db_manager = DatabaseManager('books.db')
-
-library = Library(db_manager)
+# Usage example:
+if __name__ == "__main__":
+    db_manager = DatabaseManager('books.db')
+    library = Library(db_manager)
