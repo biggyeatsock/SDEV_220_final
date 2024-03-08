@@ -1,3 +1,34 @@
+import sqlite3
+
+class DatabaseManager:
+    def __init__(self, db_file):
+        self.db_file = db_file
+
+    def create_connection(self):
+        return sqlite3.connect(self.db_file)
+
+    def execute_query(self, query, params=None):
+        conn = self.create_connection()
+        cursor = conn.cursor()
+        if params:
+            cursor.execute(query, params)
+        else:
+            cursor.execute(query)
+        conn.commit()
+        conn.close()
+
+    def fetch_data(self, query, params=None):
+        conn = self.create_connection()
+        cursor = conn.cursor()
+        if params:
+            cursor.execute(query, params)
+        else:
+            cursor.execute(query)
+        data = cursor.fetchall()
+        conn.close()
+        return data
+
+# Define Library class
 class Library:
     def __init__(self, db_manager):
         self.db_manager = db_manager
@@ -65,3 +96,8 @@ class Library:
                 print(f"The book '{book_title}' is not valid.")
         except sqlite3.Error as e:
             print("Error returning book:", e)
+
+# Books.db file
+db_manager = DatabaseManager('books.db')
+
+library = Library(db_manager)
