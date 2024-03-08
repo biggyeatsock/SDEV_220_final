@@ -1,4 +1,5 @@
 from classes.coolstuff import view, Model
+from classes.borrowingreturning import Library
 import os
 from os.path import isfile, getsize
 file_path = 'database.py'
@@ -223,7 +224,8 @@ class BorrowWindow:
         book_title = self.book_entry.get()
 
         # Call the library function to borrow the book
-        library = Library('books.db')
+        db_manager = DatabaseManager('books.db')
+        library = Library(db_manager)
         library.borrow_book(patron_name, book_title)
 
         self.patron_entry.delete(0, 'end')
