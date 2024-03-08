@@ -1,5 +1,5 @@
 from classes.coolstuff import view, Model
-from classes.borrowingreturning import Library
+from classes.borrowingreturning import Library, DatabaseManager
 import os
 from os.path import isfile, getsize
 file_path = 'database.py'
@@ -32,46 +32,13 @@ def userclose(): # Closes on user command.
         print("Closing the program...")
         exit()
 
-"""
-def main(): # Main function that runs the program.
-    database_info() # Prints if the database creation file has been ran.
-    print("\nWelcome to the BookWise Book Manager\n")
-    while True:
-        print("What would you like to do?")
-        print("1. Write to the database")
-        print("2. Removes books from database")
-        print("3. Shows all the books")
-        print("4. Close the program.")
-        uinput = input("> ")
-        my_model = Model()
-        my_view = view(my_model)
-        if uinput == "1": # Add books into the database
-            addbook = input("\nWhat is the name of the book? \n> ")
-            addauthor = input("\nWhat is the name of the author? \n> ")
-            addgenre = input("\nWhat is the genre of the book? \n> ")
-            addyear = input("\nWhat is the year of publication? \n> ")
-            my_model.add_data(addbook, addauthor, addgenre, addyear) # Sends the data over into the class file.
-        elif uinput == "2": # Removes books from database
-            bookid = input("\nWhat is the ID of the book? \n> ")
-            my_model.remove_data(bookid) # Sends the data over into the class file.
-            print("Removal successful!!")
-        elif uinput == "3": # Prints all the books in the database  
-            my_view.show_data()
-            print("\n")
-        elif uinput == "4":
-            userclose()
-        else:
-            print("Invalid input, try again.")
-"""
-
-
 import tkinter as tk
 
 class BookWindow:
     def __init__(self, root, num_books):
         self.root = root
         self.root.title("Book List")
-        root.resizable(False, False)
+        root.resizable(True, True)
         window_height = 160
         window_width = 600
         screen_width = root.winfo_screenwidth()
@@ -104,7 +71,7 @@ class AddWindow:
     def __init__(self, root):
         self.root = root
         self.root.title("Add books")
-        root.resizable(False, False)
+        root.resizable(True, True)
         window_height = 325
         window_width = 300
         screen_width = root.winfo_screenwidth()
@@ -157,7 +124,7 @@ class RemoveWindow:
     def __init__(self, root):
         self.root = root
         self.root.title("Remove books")
-        root.resizable(False, False)
+        root.resizable(True, True)
         window_height = 150
         window_width = 300
         screen_width = root.winfo_screenwidth()
@@ -198,7 +165,7 @@ class BorrowWindow:
     def __init__(self, root):
         self.root = root
         self.root.title("Borrow a Book")
-        root.resizable(False, False)
+        root.resizable(True, True)
         window_height = 150
         window_width = 500
         screen_width = root.winfo_screenwidth()
@@ -236,7 +203,7 @@ class MainWindow:
         self.root = root
         self.root.title("Main")
         root.resizable(False, False)
-        window_height = 150
+        window_height = 250
         window_width = 500
         screen_width = root.winfo_screenwidth()
         screen_height = root.winfo_screenheight()
@@ -260,6 +227,10 @@ class MainWindow:
         open_borrow_button = tk.Button(root, text="Borrow a book", command=self.open_borrow_window)
         open_borrow_button.pack(pady=0)
 
+        # Crete a button to quit the program
+        quit_button = tk.Button(root, text='Quit', command=exit)
+        quit_button.pack(pady=0)
+
     def open_books_window(self):
         my_model = Model()
         my_view = view(my_model)
@@ -278,6 +249,8 @@ class MainWindow:
     def open_borrow_window(self):
         borrow_window = tk.Toplevel(self.root)
         app_borrow = BorrowWindow(borrow_window)
+    
+    
 
 
 if __name__ == "__main__":
