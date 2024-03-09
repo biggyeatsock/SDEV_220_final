@@ -29,12 +29,14 @@ class DatabaseManager:
         return data
 
     def remove_book(self, book_title):
-        # Remove a book from the database
-        pass
+        """Remove a book from the database."""
+        query = "DELETE FROM books WHERE title = ?"
+        self.execute_query(query, (book_title,))
 
     def add_book(self, book):
-        # Add a book to the database
-        pass
+        """Add a book to the database."""
+        query = "INSERT INTO books (title, author) VALUES (?, ?)"
+        self.execute_query(query, (book["title"], book["author"]))
 
 class Library:
     def __init__(self, db_manager):
