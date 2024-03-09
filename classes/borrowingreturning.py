@@ -5,29 +5,42 @@ class DatabaseManager:
         self.db_file = db_file
 
     def create_connection(self):
-        return sqlite3.connect(self.db_file)
+        try:
+            conn = sqlite3.connect(self.db_file)
+            return conn
+        except sqlite3.Error as e:
+            print("Error connecting to the database:", e)
+            return None
 
     def execute_query(self, query, params=None):
-        conn = self.create_connection()
-        cursor = conn.cursor()
-        if params:
-            cursor.execute(query, params)
-        else:
-            cursor.execute(query)
-        conn.commit()
-        conn.close()
-
+        try:
+            conn = self.create_connection()
+            if conn:
+                cursor = conn.cursor()
+                if params:
+                    cursor.execute(query, params)
+                else:
+                    cursor.execute(query)
+                conn.commit()
+                conn.close()
+        except sqlite3.Error as e:
+            print("Error executing query:", e)
+    
     def fetch_data(self, query, params=None):
-        conn = self.create_connection()
-        cursor = conn.cursor()
-        if params:
-            cursor.execute(query, params)
-        else:
-            cursor.execute(query)
-        data = cursor.fetchall()
-        conn.close()
-        return data
-
+        try:
+            conn = self.create_connection()
+            if conn:
+                cursor = conn.cursor()
+                if params:
+                    cursor.execute(query, params)
+                else:
+                    cursor.execute(query)
+                data = cursor.fetchall()
+                conn.close()
+                return data
+        except sqlite3.Error as e:
+            print("Error fetching data:", e)
+    
     def remove_book(self, book_title):
         """Remove a book from the database."""
         query = "DELETE FROM books WHERE title = ?"
@@ -45,15 +58,8 @@ class Library:
     def search_books(self, keyword):
         """Search for books by title or author."""
         try:
-            conn = self.db_manager.create_connection()
-            cursor = conn.cursor()
-            cursor.execute('''
-                SELECT * FROM books
-                WHERE title LIKE ? OR author LIKE ?
-            ''', ('%' + keyword + '%', '%' + keyword + '%'))
-            books = cursor.fetchall()
-            conn.close()
-
+            query = '''SELECT * FROM books WHERE title like ? OR author LIKE ?'''
+            books = self.db_manager.fetch_data(query, ('%' + keyword + '%', '%' + keyword + '%'))
             if books:
                 print("Search results:")
                 for book in books:
@@ -66,17 +72,10 @@ class Library:
     def borrow_book(self, patron, book_title):
         """Allow a patron to borrow a book."""
         try:
-            conn = self.db_manager.create_connection()
-            cursor = conn.cursor()
-            cursor.execute('''
-                SELECT * FROM books
-                WHERE title = ?
-            ''', (book_title,))
-            book = cursor.fetchone()
-            conn.close()
-
+            query = "SELECT * FROM books WHERE title = ?"
+            book = self.db_manager.fetch_data(query, (book_title,))
             if book:
-                borrowed_book = book
+                borrowed_book = book[0]
                 patron.borrow_book(borrowed_book)
                 self.db_manager.remove_book(book_title)
             else:
@@ -87,17 +86,10 @@ class Library:
     def return_book(self, patron, book_title):
         """Allow a patron to return a book."""
         try:
-            conn = self.db_manager.create_connection()
-            cursor = conn.cursor()
-            cursor.execute('''
-                SELECT * FROM books
-                WHERE title = ?
-            ''', (book_title,))
-            book = cursor.fetchone()
-            conn.close()
-
+            query = "SELECT * FROM books WHERE title = ?"
+            book = self.db_manager.fetch_data(query, (book_title,))
             if book:
-                returned_book = book
+                returned_book = book[0]
                 patron.return_book(returned_book)
                 self.db_manager.add_book(returned_book)
             else:
