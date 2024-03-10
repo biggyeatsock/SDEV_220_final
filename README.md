@@ -111,15 +111,20 @@ What you need to run this:
    ```sh
    git clone https://github.com/biggyeatsock/SDEV_220_final_Project_Team2.git
    ```
-2. Run the main.py file
+2. Run the database file
+  ```
+  python database.py
+  ```  
+
+3. Run the main.py file
    ```sh
    python main.py or python3 main.py
    ```
-   or if you want want a GUI
+   or if you want want a GUI (This is more polished)
    ```sh
    python main_gui.py or python3 main_gui.py
    ```
-3. Enjoy
+4. Enjoy
    
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
