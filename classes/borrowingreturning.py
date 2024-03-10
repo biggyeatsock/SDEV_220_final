@@ -1,5 +1,15 @@
 import sqlite3
 
+from datetime import datetime, timedelta
+
+def borrow_time():
+    current_date = datetime.now()
+    future_date = current_date + timedelta(days=14)
+    formatted_date = future_date.strftime("%B %d")
+    suffix = "th" if 11 <= future_date.day <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(future_date.day % 10, "th")
+    formatted_date += suffix
+    return formatted_date
+
 class DatabaseManager:
     def __init__(self, db_file):
         self.db_file = db_file
@@ -51,53 +61,22 @@ class DatabaseManager:
         query = "INSERT INTO books (title, author) VALUES (?, ?)"
         self.execute_query(query, (book["title"], book["author"]))
 
-class Library:
-    def __init__(self, db_manager):
-        self.db_manager = db_manager
-
-    def search_books(self, keyword):
-        """Search for books by title or author."""
+    def update_borrow_name(self, book_id, borrow_name):
+        """Update the borrow_name for a book."""
         try:
-            query = '''SELECT * FROM books WHERE title like ? OR author LIKE ?'''
-            books = self.db_manager.fetch_data(query, ('%' + keyword + '%', '%' + keyword + '%'))
-            if books:
-                print("Search results:")
-                for book in books:
-                    print(book)
-            else:
-                print("No books found matching the search criteria.")
+            conn = self.create_connection()
+            if conn:
+                cursor = conn.cursor()
+                cursor.execute('''
+                    UPDATE books
+                    SET borrow_name = ?
+                    WHERE id = ?
+                ''', (borrow_name, book_id))
+                conn.commit()
+                conn.close()
         except sqlite3.Error as e:
-            print("Error searching books:", e)
+            print("Error updating borrow name:", e)
 
-    def borrow_book(self, patron, book_title):
-        """Allow a patron to borrow a book."""
-        try:
-            query = "SELECT * FROM books WHERE title = ?"
-            book = self.db_manager.fetch_data(query, (book_title,))
-            if book:
-                borrowed_book = book[0]
-                patron.borrow_book(borrowed_book)
-                self.db_manager.remove_book(book_title)
-            else:
-                print(f"The book '{book_title}' is not available.")
-        except sqlite3.Error as e:
-            print("Error borrowing book:", e)
 
-    def return_book(self, patron, book_title):
-        """Allow a patron to return a book."""
-        try:
-            query = "SELECT * FROM books WHERE title = ?"
-            book = self.db_manager.fetch_data(query, (book_title,))
-            if book:
-                returned_book = book[0]
-                patron.return_book(returned_book)
-                self.db_manager.add_book(returned_book)
-            else:
-                print(f"The book '{book_title}' is not valid.")
-        except sqlite3.Error as e:
-            print("Error returning book:", e)
-
-# Usage example:
 if __name__ == "__main__":
     db_manager = DatabaseManager('books.db')
-    library = Library(db_manager)

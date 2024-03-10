@@ -140,7 +140,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Getting borrowing integrated
+Nothing so far, unless someone wants to add something.
 
 See the [open issues](https://github.com/biggyeatsock/SDEV_220_final_Project_Team2/issues) for a full list of proposed features (and known issues).
 

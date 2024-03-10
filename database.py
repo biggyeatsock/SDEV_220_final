@@ -13,28 +13,28 @@ def create_connection(db_file):
 def create_table(conn):
     """Create a table to store books."""
     try:
-        cursor = conn.cursor()
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS books (
-                id INTEGER PRIMARY KEY,
-                title TEXT,
-                author TEXT,
-                genre TEXT,
-                publication_year INTEGER
-            )
-        ''')
+        c = conn.cursor()
+        c.execute('''CREATE TABLE IF NOT EXISTS books
+        (id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        author TEXT NOT NULL,
+        genre TEXT NOT NULL,
+        publication_year INTEGER NOT NULL,
+        borrow_date TEXT,
+        borrow_name TEXT,
+        return_date TEXT)''')
         conn.commit()
     except sqlite3.Error as e:
         print(e)
 
-def insert_book(conn, title, author, genre, publication_year):
+def insert_book(conn, title, author, genre, publication_year, borrow_name=None, borrow_date=None, return_date=None):
     """Insert a book into the database."""
     try:
         cursor = conn.cursor()
         cursor.execute('''
-            INSERT INTO books (title, author, genre, publication_year)
-            VALUES (?, ?, ?, ?)
-        ''', (title, author, genre, publication_year))
+            INSERT INTO books (title, author, genre, publication_year, borrow_name, borrow_date, return_date)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        ''', (title, author, genre, publication_year, borrow_name, borrow_date, return_date))
         conn.commit()
     except sqlite3.Error as e:
         print(e)

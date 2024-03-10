@@ -1,9 +1,9 @@
 from classes.coolstuff import view, Model
-from classes.borrowingreturning import Library, DatabaseManager
+from classes.borrowingreturning import DatabaseManager, borrow_time
 import os
 from os.path import isfile, getsize
 file_path = 'database.py'
-
+from datetime import datetime, timedelta
 def database_info(): # gathers info about the database.
     import sqlite3
     try:
@@ -26,11 +26,6 @@ def create_database(file_path): # Create a database if one hasn't been made
         print(f'Error: the file {file_path} does not exist.')
         exit()
 
-def userclose(): # Closes on user command.
-    uinput = input("\nWould you like to close the program? (y/n) \n> ")
-    if uinput == "y":
-        print("Closing the program...")
-        exit()
 
 import tkinter as tk
 
@@ -39,8 +34,8 @@ class BookWindow:
         self.root = root
         self.root.title("Book List")
         root.resizable(True, True)
-        window_height = 160
-        window_width = 600
+        window_height = 200
+        window_width = 800
         screen_width = root.winfo_screenwidth()
         screen_height = root.winfo_screenheight()
         x_cordinate = int((screen_width/2) - (window_width/2))
@@ -52,20 +47,24 @@ class BookWindow:
         self.num_books = num_books
 
         scrollbar = tk.Scrollbar(root)
-        scrollbar.pack( side = 'right', fill='y' )
+        scrollbar.pack(side='right', fill='y')
 
-        mylist = tk.Listbox(root, yscrollcommand = scrollbar.set )
+        mylist = tk.Listbox(root, yscrollcommand=scrollbar.set)
         for i in range(self.num_books):
-            ##mylist.insert('end', "This is line number " + str(line))
             book_id = str(my_model.get_row(i, 'id')).replace('(','').replace(')','').replace(',','')
             book_title = str(my_model.get_row(i, 'title')).replace('(','').replace(')','').replace(',','')
             book_author = str(my_model.get_row(i, 'author')).replace('(','').replace(')','').replace(',','')
             book_genre = str(my_model.get_row(i, 'genre')).replace('(','').replace(')','').replace(',','')
             book_year = str(my_model.get_row(i, 'publication_year')).replace('(','').replace(')','').replace(',','')
-            mylist.insert('end', (str(i+1)+'.          ID: '+book_id+',     Title: '+book_title+',     Author: '+book_author+',     Genre: '+book_genre+',     Year: '+book_year))
-        
-        mylist.pack( fill = 'both' )
-        scrollbar.config( command = mylist.yview )
+            borrowed_date = str(my_model.get_row(i, 'borrow_date')).replace('(','').replace(')','').replace(',','')
+            return_date = str(my_model.get_row(i, 'return_date')).replace('(','').replace(')','').replace(',','')
+            borrow_name = str(my_model.get_row(i, 'borrow_name')).replace('(','').replace(')','').replace(',','')
+            mylist.insert('end', (str(i+1)+'.          ID: '+book_id+',     Title: '+book_title+',     Author: '+book_author+',     Genre: '+book_genre+',     Year: '+book_year+',     Borrowed Date: '+borrowed_date+',     Return Date: '+return_date+',     Borrower: '+borrow_name))
+
+        mylist.pack(fill='both')
+        scrollbar.config(command=mylist.yview)
+
+
 
 class AddWindow:
     def __init__(self, root):
@@ -166,7 +165,7 @@ class BorrowWindow:
         self.root = root
         self.root.title("Borrow a Book")
         root.resizable(True, True)
-        window_height = 150
+        window_height = 200
         window_width = 500
         screen_width = root.winfo_screenwidth()
         screen_height = root.winfo_screenheight()
@@ -174,7 +173,7 @@ class BorrowWindow:
         y_cordinate = int((screen_height/2) - (window_height/2))
         root.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
         
-        book_label = tk.Label(root, text='Enter patron name and book title')
+        book_label = tk.Label(root, text='Enter Patron Name and Book ID')
         book_label.pack(pady=10)
 
         self.patron_entry = tk.Entry(root)
@@ -186,17 +185,25 @@ class BorrowWindow:
         borrow_button = tk.Button(root, text="Borrow", command=self.borrow_book)
         borrow_button.pack(pady=10)
 
+        self.result_label = tk.Label(root, text="")
+        self.result_label.pack(pady=10)
+
     def borrow_book(self):
         patron_name = self.patron_entry.get()
-        book_title = self.book_entry.get()
+        book_id = self.book_entry.get()
 
-        # Call the library function to borrow the book
-        db_manager = DatabaseManager('books.db')
-        library = Library(db_manager)
-        library.borrow_book(patron_name, book_title)
-
-        self.patron_entry.delete(0, 'end')
-        self.book_entry.delete(0, 'end')
+        if patron_name and book_id:
+            my_model = Model()
+            borrowed_date = datetime.now()
+            borrowed_date_str = borrowed_date.strftime("%B %d")
+            return_date = borrowed_date + timedelta(days=14)  # Assuming a 2-week borrowing period
+            return_date_str = return_date.strftime("%B %d")
+            my_model.borrow_book(book_id, patron_name, borrowed_date_str, return_date_str)  # Add borrowed_date_str as the third argument
+            result_message = f'Book {book_id} borrowed by {patron_name}. Return by {return_date_str}.'
+            self.result_label.config(text=result_message)
+        else:
+            result_message = 'Please enter both patron name and book ID.'
+            self.result_label.config(text=result_message)
 
 class MainWindow:
     def __init__(self, root):

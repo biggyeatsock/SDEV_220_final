@@ -1,15 +1,15 @@
 # This just a test file.
 # This tests to see if a database file has been created, and if it is, it prints the size of the file.
 
-import sqlite3
-from os.path import isfile, getsize
-# conn = sqlite3.connect('database.db')
-try: 
-    if not isfile('database.db'):
-        raise sqlite3.OperationalError
-    
-    if isfile('database.db'):
-        print(f'\nDatabase file size: {getsize("books.db")} bytes')
+from datetime import datetime, timedelta
 
-except sqlite3.OperationalError as e:
-    print(f'File Not found')
+# Get the current date
+current_date = datetime.now()
+
+# Calculate the date 14 days from now
+future_date = current_date + timedelta(days=14)
+
+# Print the future date in DD-MM format
+print("Today's date:", current_date.strftime('%d-%m'))
+print("Date 14 days from now:", future_date.strftime('%d-%m'))
+

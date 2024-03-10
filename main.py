@@ -3,16 +3,15 @@
 #  
 #   Project name: BookWise Book Manager
 #   
-#   
-#
-#
-#
 #####################
 
 from classes.coolstuff import view, Model
 import os
+import sqlite3
+from datetime import datetime, timedelta
 from os.path import isfile, getsize
 file_path = 'database.py'
+from classes.borrowingreturning import DatabaseManager
 
 def database_info(): # gathers info about the database.
     import sqlite3
@@ -42,15 +41,25 @@ def userclose(): # Closes on user command.
         print("Closing the program...")
         exit()
 
+def borrow_time():
+    current_date = datetime.now()
+    future_date = current_date + timedelta(days=14)
+    formatted_date = future_date.strftime("%B %d")
+    suffix = "th" if 11 <= future_date.day <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(future_date.day % 10, "th")
+    formatted_date += suffix
+    return formatted_date
+
 def main(): # Main function that runs the program.
     database_info() # Prints if the database creation file has been ran.
     print("\nWelcome to the BookWise Book Manager\n")
+    db_manager = DatabaseManager('books.db')
     while True:
         print("What would you like to do?")
         print("1. Write to the database")
         print("2. Removes books from database")
         print("3. Shows all the books")
-        print("4. Close the program.")
+        print("4. Borrow a book")
+        print("5. Close the program")
         uinput = input("> ")
         my_model = Model()
         my_view = view(my_model)
@@ -68,9 +77,16 @@ def main(): # Main function that runs the program.
             my_view.show_data()
             print("\n")
         elif uinput == "4":
+            book_id = input('Please enter a book id: \n > ')
+            user_name = input('Please enter a patron name: \n > ')
+            db_manager.update_borrow_name(book_id, user_name)  # Use the DatabaseManager instance to call update_borrow_name
+            futuredate = borrow_time()
+            print(f'\n Please bring the book back by {futuredate}\n')
+        elif uinput == "5":
             userclose()
         else:
             print("Invalid input, try again.")
+
 
 
 

@@ -33,6 +33,12 @@ class Model:
         results = self.cursor.fetchall()
         return results[0]
 
+    def borrow_book(self, book_id, patron_name, borrowed_date, return_date):
+        self.cursor.execute('UPDATE books SET borrow_name=?, borrow_date=?, return_date=? WHERE id=?',
+                            (patron_name, borrowed_date, return_date, book_id))
+        self.conn.commit()
+
+
 class view:
     def __init__(self, model):
         self.model = model
